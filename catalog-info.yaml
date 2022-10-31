@@ -16,7 +16,7 @@ spec:
       version: 0.1.0
       title: First backend API
       license:
-        name: MIT
+        name: BSD
     servers:
       - url: http://localhost:7007/api/first/
     paths:
@@ -57,6 +57,26 @@ spec:
                 application/json:
                   schema:
                     $ref: '#/components/schemas/RandomUser'
+            '404':
+              description: Not Found
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/ErrorModel'
+        delete:
+          description: Delete one user from database
+          parameters:
+            - name: id
+              in: path
+              required: true
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 0d473b1e-5d74-4676-8d7e-be6156dd7e9d
+          responses:
+            '204':
+              descrition: delete perfomed successfully
             '404':
               description: Not Found
               content:

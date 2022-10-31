@@ -66,6 +66,16 @@ export async function createRouter(
     }
   });
 
+  router.delete('/users/:id', async (req, response) => {
+    try {
+      const userId: string = req.params.id || "";
+      await dbHandler.delete(userId);
+      response.status(204).send();
+    } catch (err) {
+      response.status(404).send({status: 'nok', message: "User not found"});
+    }
+  });
+
 
   router.get('/health', (_, response) => {
     logger.info('PONG!');
